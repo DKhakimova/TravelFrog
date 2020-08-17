@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Trip</title> 
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/design.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <div id="logo"><a href="/dashboard"><img src="/static/images/logo.png" /></a></div>
+            <div id="header-user-info">
+                <h1>Edit Trip</h1>
+                <a class="logout" href="/logout">Log Out</a>
+            </div>
+        </header>
+        <div id="form-container">
+            {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form class="align-form-labels" action="/dashboard/trip/update/{{ trip.id }}" method="POST">
+            {% csrf_token %}
+                <div class="form_input">
+                    <label for="destination">Destination City</label>
+                    <input value="{{ trip.destination }}" type="text" name="destination" id="destination">
+                </div>
+                <div class="form_input">
+                    <label for="description">Trip Description</label>
+                    <input value="{{ trip.description }}" type="text" name="description" id="description">
+                </div>
+                <div class="form-action-buttons">
+                    <a class="button" href="/dashboard">Cancel</a>
+                    <input type="submit" value="Save">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

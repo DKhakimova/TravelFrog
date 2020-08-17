@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Trip</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/design.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <div id="logo"><a href="/dashboard"><img src="/static/images/logo.png" /></a></div>
+            <div id="header-user-info">
+                <h1>Hello, {{ user.first_name }}! </h1>
+                <a class="logout" href="/logout">Log Out</a>
+            </div>
+        </header>
+        <div id="container">
+            <h3>Upcoming Trips:</h3>
+            {% if user.user_trips.all %}
+            <table>
+                <tr>
+                    <th>Destination City</th>
+                    <th>Trip Description</th>
+                    <th>Actions</th>
+                </tr>
+            {% for trip in user.user_trips.all %}
+                <tr>
+                    <td><a href="/dashboard/trip/{{ trip.id }}">{{ trip.destination }}</a></td>
+                    <td>{{ trip.description }}</a></td>
+                {% if trip.creator == user %}
+                    <td><a href="/dashboard/trip/delete/{{ trip.id }}">Remove</a> | <a href="/dashboard/trip/edit/{{ trip.id }}">Edit</a></td>
+                {% endif %}
+                </tr>
+            {% endfor %}
+            </table>
+            {% else %}
+            <h3>You don't have any upcoming trips, would you like to create one?</h3>
+            {% endif %}
+            <a class="button action-button" href="/dashboard/trip/new">Create a Trip</a>
+        </div>
+        <div id="plans_section">
+        {% if user.user_plans.all %}
+        <h3>Plans you have created:</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Created by</th>
+                <th style="width: 100px;">Action</th>
+            </tr>
+        {% for plan in user.user_plans.all %}
+            <tr>
+                <td>{{ plan.name }}</td>
+                <td>{{ plan.destination }}</td>
+                <td>{{ plan.description }}</td>
+                <td>{{ plan.plan_type }}</td>
+                <td>{{ plan.creator.first_name }}</td>
+                <td><a href="/dashboard/plan/delete/{{ plan.id }}">Delete</a> | <a href="/dashboard/plan/edit/{{ plan.id }}">Edit</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+        {% else %}
+            <h3>You haven't contributed any plans to this community of travel frogs, would you like to create a plan?</h3>
+        {% endif %}
+        <a class="button action-button" href="/dashboard/plan/new">Create a Plan</a>
+        </div>
+    </div>       
+</body>
+</html>

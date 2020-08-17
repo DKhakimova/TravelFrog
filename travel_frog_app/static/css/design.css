@@ -1,0 +1,184 @@
+body {
+    background: rgb(93,166,249);
+    background: linear-gradient(180deg, rgb(138, 191, 250) 0%, rgb(217, 244, 252) 100%);
+    min-height: 900px;
+}
+
+header {
+    display:flex;
+    justify-content: space-between;
+    background-color: #bbd5f0;
+    padding: 0px 15px 0px 15px;
+    margin-bottom: 35px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    
+    
+}
+
+header h1 {
+    display: inline-block;
+    margin-right: 20px;
+}
+#logo img {
+    height: 60px;
+    margin-top: 30px;
+}
+
+#header-user-info {
+    width: 400px;
+    text-align: right;
+}
+#header-user-info>* {
+    line-height: 70px;
+}
+
+#wrapper {
+    width: 980px;
+    margin: 0px auto;
+    background-color: rgba(255,255,255,0.6);
+    padding: 0px 40px 80px;
+}
+
+#container {
+    width: 700px;
+    margin: 0px auto;
+}
+
+#form-container {
+    width: 400px;
+    margin: 0px auto;
+    margin-top: 80px;
+    margin-bottom: 100px;
+    background-color: rgb(187, 213, 240);
+    padding: 50px;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(40, 49, 92);
+    border: 1px solid rgb(40, 49, 92);
+}
+.box {
+    width: 400px;
+    margin: 0px auto;
+    background-color: rgb(187, 213, 240);
+    padding: 0px 40px;
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(40, 49, 92);
+    border: 1px solid rgb(40, 49, 92);
+}
+
+#form-container label {
+    font-size: 20px;
+    margin-right: 20px;
+}
+#form-container input[type=text], select {
+    margin-bottom: 10px;
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: rgb(40, 49, 92);
+}
+
+tr:hover {
+    background-color: rgb(236, 242, 243);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table tr th {
+    background-color: rgb(187, 213, 240);
+}
+
+.form-action-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button, input[type=submit] {
+    border-radius: 6px;
+    padding: 5px 10px;
+    background-color: rgb(90, 125, 177);
+    box-shadow: 2px 2px 5px black;
+    margin-right: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    border: 2px solid gray;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.button{
+    height: 20px;
+}
+.button.secondary, input[type=submit].secondary {
+    background-color: rgb(121, 140, 160);
+    box-shadow: none;
+}
+.button.red, input[type=submit].red {
+    background-color: rgb(252, 125, 125);
+    color: black;
+}
+.button.green, input[type=submit].green {
+    background-color: rgb(159, 220, 159);
+    color: black;
+}
+
+.action-button {
+    float: right;
+    margin-top: 10px;
+}
+
+button a, input[type=submit] {
+    font-size: 16px;
+    text-decoration: none;
+    color: rgb(241, 242, 250);
+}
+
+#plans_section {
+    clear: both;
+    padding-top: 20px;
+}
+
+h1, h3{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(40, 49, 92);
+}
+
+p{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(40, 49, 92);
+    font-size: 20px;
+}
+
+.align-form-labels label{
+    display: inline-block;
+    width: 145px;  
+}
+
+#filter {
+    margin: 0px auto;
+    width: 375px;
+}
+
+#filter>*{
+    display: inline-block;
+}
+
+.empty-message {
+    margin: 40px 0px;
+}
+
+.logout{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}

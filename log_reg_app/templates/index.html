@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <div id="logo"><img src="/static/images/logo.png" /></div>
+        </header>
+        <div id="form-wrapper">
+            <div class="log_reg">
+                <h1>Registration</h1>
+                {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <form action="/create" method="post">
+                    {% csrf_token %}
+                    <div class="block">
+                        <label for="first_name">First Name</label>
+                        <input type="text" name="first_name" id="first_name">
+                    </div>
+                    <div class="block">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" name="last_name" id="last_name">
+                    </div>
+                    <div class="block">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email">
+                    </div>
+                    <div class="block">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <div class="block">
+                        <label for="confirm">Confirm PW</label>
+                        <input type="password" name="confirm" id="confirm">
+                    </div>
+                    <input class="submit" type="submit" value="Register">
+                </form>
+            </div>
+            <div class="log_reg">
+                <h1>Login</h1>
+                <form action="/login" method="post">
+                    {% csrf_token %}
+                    <div class="block">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email">
+                    </div>
+                    <div class="block">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <input class="submit" type="submit" value="Login">
+                </form>
+            </div>
+        </div>
+    </div>   
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Plan</title> 
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/design.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <div id="logo"><a href="/dashboard"><img src="/static/images/logo.png" /></a></div>
+            <div id="header-user-info">
+                <h1>Edit Plan</h1>
+                <a class="logout" href="/logout">Log Out</a>
+            </div>
+        </header>
+        <div id="form-container">
+            {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <form class="align-form-labels" action="/dashboard/plan/update/{{ plan.id }}" method="POST">
+                {% csrf_token %}
+                <div class="form_input">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" value="{{ plan.name }}">
+                </div>
+                <div class="form_input">
+                    <label for="destination">Location</label>
+                    <input type="text" name="destination" id="destination" value="{{ plan.destination }}">
+                </div>
+                <div class="form_input">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description" value="{{ plan.description }}">
+                </div>
+                <div class="form_input">
+                    <label for="plan_type">Type</label>
+                    <select name="plan_type" id="plan_type">
+                        <option value="Lodging" {% if plan.plan_type == "Lodging" %}selected="selected"{% endif %}>Lodging</option>
+                        <option value="Dining" {% if plan.plan_type == "Dining" %}selected="selected"{% endif %}>Dining</option>
+                        <option value="Activity" {% if plan.plan_type == "Activity" %}selected="selected"{% endif %}>Activity</option>
+                        <option value="Other" {% if plan.plan_type == "Other" %}selected="selected"{% endif %}>Other</option>
+                    </select>
+                </div>
+                <div class="form-action-buttons">
+                    <a class="button" href="/dashboard">Cancel</a>
+                    <input type="submit" value="Save">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

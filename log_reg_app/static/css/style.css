@@ -1,0 +1,96 @@
+#wrapper{
+    width: 980px;
+    margin: 0px auto;
+    background-color: rgba(255,255,255,0.6);
+    border-radius: 20px;
+}
+
+body{
+    background-image: url("/static/images/front_page.jpg");
+    background-size: cover;
+}
+
+#form-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#logo {
+    width: 315px;
+    height: 60px;
+    padding: 40px 0px 20px 0px;
+    margin: 0px auto;
+}
+#logo>img{
+    height: inherit;
+}
+
+.log_reg{
+    flex: none;
+    flex-basis: 50%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(40, 49, 92);
+}
+.log_reg form {
+    width: 380px;
+    margin: 0px auto;
+}
+
+h1{
+    text-align:center;
+    margin-bottom: 40px;
+}
+
+.block, .submit{
+    display: block;
+    margin: 20px;
+    font-size: 20px;
+}
+
+label{
+    display: inline-block;
+    width: 120px;
+}
+
+.submit{
+    margin-left: 140px;
+    border-radius: 6px;
+    padding: 5px 10px;
+    background-color: rgb(90, 125, 177);
+    box-shadow: 2px 2px 5px black;
+    margin-right: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    border: 2px solid gray;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input{
+    font-size: 20px;
+    border: 1px solid grey;
+}
+
+#success{
+    margin: 20px;
+    display: inline-block;
+}
+
+a{
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 20px;
+    margin-left: 300px;
+}
+
+.success{
+    color: green;
+    list-style-type: none;
+    font-size: 20px;
+    margin-left: 115px;
+}
+
+.error{
+    color: green;
+}
+

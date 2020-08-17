@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/design.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <div id="logo"><a href="/dashboard"><img src="/static/images/logo.png" /></a></div>
+            <div id="header-user-info">
+                <h1>Hello, {{ user.first_name }}! </h1>
+                <a class="logout" href="/logout">Log Out</a>
+            </div>
+        </header>
+        <div class="box">
+            <p>Destination: {{ trip.destination }}</p>
+            <p>Description: {{ trip.description }}</p>
+            <p>Created On: {{ trip.created_at}}</p>
+            <p>Last Updated On: {{ trip.updated_at }}</p>
+        </div>
+        {% if trip.trip_plans.all %}
+        <h3>Trip Plans:</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Created by</th>
+                <th>Action</th>
+            </tr>
+        {% for plan in trip.trip_plans.all %}
+            <tr>
+                <td>{{ plan.name }}</td>
+                <td>{{ plan.destination }}</td>
+                <td>{{ plan.description }}</td>
+                <td>{{ plan.plan_type }}</td>
+                <td>{{ plan.creator.first_name }}</td>
+            {% if trip.creator == user %}
+                <td><form action="/dashboard/remove/{{ plan.id }}" method="post">
+                    {% csrf_token %}
+                        <input type="hidden" name="trip_id" value="{{ trip.id }}">
+                        <input class="secondary red" type="submit" value="Remove Plan">
+                    </form> 
+                </td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+        </table>
+        {% else %}
+            <h3 class="empty-message">You don't have anything planned for this trip, would you like to add or create a plan?</h3>
+        {% endif %}
+        <hr />
+        <div style="display:flex; justify-content: space-between;">
+            <h3>Fellow Frog Plans:</h3>
+            <a class="button action-button" href="/dashboard/trip/{{ trip.id }}/new_plan">Create a Plan</a>
+        </div>
+        <div id="filter">
+            <p>Filter by:</p>
+            <form action="/dashboard/trip/{{ trip.id }}" method = "POST">
+                {% csrf_token %}
+                <select name="plan_type" id="plan_type">
+                    <option {% if plan_type_filter == "All" %}selected="selected"{% endif %} value="All">All</option>
+                    <option {% if plan_type_filter == "Lodging" %}selected="selected"{% endif %} value="Lodging">Lodging</option>
+                    <option {% if plan_type_filter == "Dining" %}selected="selected"{% endif %} value="Dining">Dining</option>
+                    <option {% if plan_type_filter == "Activity" %}selected="selected"{% endif %} value="Activity">Activity</option>
+                    <option {% if plan_type_filter == "Other" %}selected="selected"{% endif %} value="Other">Other</option>
+                </select>
+                <input type="submit" value="Update">
+            </form>
+        </div>
+        {% if all_plans %}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Created by</th>
+                <th>Action</th>
+            </tr>
+        {% for plan in all_plans %}
+            <tr>
+                <td>{{ plan.name }}</td>
+                <td>{{ plan.destination }}</td>
+                <td>{{ plan.description }}</td>
+                <td>{{ plan.plan_type }}</td>
+                <td>{{ plan.creator.first_name }}</td>
+            {% if trip.creator == user %}
+                <td>
+                    <form action="/dashboard/add/{{ plan.id }}" method="post">
+                    {% csrf_token %}
+                        <input type="hidden" name="trip_id" value="{{ trip.id }}">
+                        <input class="secondary green" type="submit" value="Add Plan">
+                    </form> 
+                </td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+        </table>
+        {% else %}
+            {% if plan_type_filter == "All" %}
+            <h3>No more plans for {{ trip.destination }}, would you like to create a plan?</h3>
+            {% else %}
+            <h3>No more {{ plan_type_filter }} plans for {{ trip.destination }}, would you like to create a plan?</h3>
+            {% endif %}
+        {% endif %}
+    </div>   
+</body>
+</html>
